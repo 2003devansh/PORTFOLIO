@@ -1,37 +1,36 @@
-import { useEffect, useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const About = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { triggerOnce: false, threshold: 0.3 });
-
   const [text, setText] = useState("_");
+  const [hasAnimated, setHasAnimated] = useState(false);
   const fullText = "I build UI/UX and backend solutions.";
 
-  useEffect(() => {
-    if (!isInView) return; // Don't do anything if not in view
+  const startTyping = () => {
+    if (hasAnimated) return;
 
-    setText("_"); // Reset text when it comes into view
+    setHasAnimated(true);
     let index = 0;
-
     const interval = setInterval(() => {
-      setText((prev) => fullText.substring(0, index) + "_");
+      setText(fullText.substring(0, index) + "_");
       index++;
       if (index > fullText.length) clearInterval(interval);
     }, 100);
-
-    return () => clearInterval(interval);
-  }, [isInView]); // Re-run effect when `isInView` changes
+  };
 
   return (
-    <section
-      ref={ref}
-      className="relative flex flex-col lg:flex-row items-center justify-center min-h-screen bg-black text-white px-10"
+    <motion.section
+      id="about"
+      className="relative flex flex-col lg:flex-row items-center justify-center min-h-screen bg-[#0a0a0a] text-white px-10 py-20 scroll-mt-20"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.4 }}
+      onViewportEnter={startTyping}
     >
       {/* Profile Image */}
       <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        animate={isInView ? { opacity: 1, x: 0 } : {}}
+        initial={{ opacity: 0, x: -60 }}
+        whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 1 }}
         className="w-72 h-72 rounded-full overflow-hidden border-4 border-red-500 shadow-lg mb-8 lg:mb-0"
       >
@@ -43,40 +42,33 @@ const About = () => {
       </motion.div>
 
       {/* Text Content */}
-      <div className="lg:ml-12 max-w-3xl">
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1 }}
-          className="text-5xl font-extrabold text-red-500"
-        >
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="lg:ml-12 max-w-3xl"
+      >
+        <h2 className="text-5xl font-extrabold text-red-500 mb-4">
           Hey, I'm Devansh.
-        </motion.h2>
+        </h2>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="mt-6 text-2xl text-gray-300 leading-relaxed"
-        >
-          I specialize in crafting <span className="font-bold">modern digital experiences</span> that merge 
-          <span className="font-bold"> design and technology</span> seamlessly.  
-          From <span className="font-bold">intuitive UI/UX</span> that captivates users to 
-          <span className="font-bold"> powerful backend systems</span> that drive functionality,  
-          I bring ideas to life with <span className="font-bold">precision and purpose</span>.
-        </motion.p>
+        <p className="text-2xl text-gray-300 leading-relaxed">
+          I specialize in crafting <strong>modern digital experiences</strong> that merge{" "}
+          <strong>design and technology</strong> seamlessly. From <strong>intuitive UI/UX</strong> to{" "}
+          <strong>powerful backend systems</strong>, I bring ideas to life with precision and purpose.
+        </p>
 
         {/* Typing Effect */}
         <motion.p
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 1, delay: 1 }}
-          className="mt-4 text-2xl font-semibold text-gray-100 border-l-4 border-red-500 pl-4"
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.2 }}
+          className="mt-6 text-2xl font-semibold text-gray-100 border-l-4 border-red-500 pl-4"
         >
           {text}
         </motion.p>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 };
 
