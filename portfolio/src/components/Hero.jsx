@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const Hero = () => {
   const [text, setText] = useState("_");
   const fullText = "I build digital experiences.";
-  
+
   useEffect(() => {
     let index = 0;
     const interval = setInterval(() => {
@@ -28,7 +28,6 @@ const Hero = () => {
           <span className="text-red-500">You are not your job.</span>
         </motion.h1>
 
-        {/* Job Description (Previously Missing) */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -36,11 +35,13 @@ const Hero = () => {
           className="mt-4 text-lg text-gray-300"
         >
           But if I were, I'd be a{" "}
-          <span className="font-bold text-white">Full-Stack Developer</span> 
-          building <span className="font-bold text-red-400">seamless, high-impact digital experiences.</span>
+          <span className="font-bold text-white">Full-Stack Developer</span>{" "}
+          building{" "}
+          <span className="font-bold text-red-400">
+            seamless, high-impact digital experiences.
+          </span>
         </motion.p>
 
-        {/* Typing Effect */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -50,15 +51,16 @@ const Hero = () => {
           {text}
         </motion.p>
 
-        {/* CTA Button */}
-        <motion.button
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 1.5 }}
-          className="mt-6 px-6 py-2 bg-red-500 text-white font-bold rounded-lg shadow-lg hover:bg-red-600 transition-all duration-300 ease-in-out"
-        >
-          See My Work
-        </motion.button>
+        <a href="#projects">
+          <motion.button
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 1.5 }}
+            className="mt-6 px-6 py-2 bg-red-500 text-white font-bold rounded-lg shadow-lg hover:bg-red-600 transition-all duration-300 ease-in-out"
+          >
+            See My Work
+          </motion.button>
+        </a>
       </div>
     </section>
   );

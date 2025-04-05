@@ -27,7 +27,6 @@ const About = () => {
       viewport={{ once: true, amount: 0.4 }}
       onViewportEnter={startTyping}
     >
-      {/* Profile Image */}
       <motion.div
         initial={{ opacity: 0, x: -60 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -40,8 +39,6 @@ const About = () => {
           className="w-full h-full object-cover"
         />
       </motion.div>
-
-      {/* Text Content */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -58,7 +55,6 @@ const About = () => {
           <strong>powerful backend systems</strong>, I bring ideas to life with precision and purpose.
         </p>
 
-        {/* Typing Effect */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github } from "lucide-react"; // Lucide icon for GitHub (assuming shadcn/ui is installed)
+import { Github } from "lucide-react";
 
 const projects = [
   {
