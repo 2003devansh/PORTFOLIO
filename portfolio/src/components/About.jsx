@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import devanshPic from "../assets/WhatsApp Image 2025-04-03 at 10.13.32_b2966cc2.jpg";
+
 
 const About = () => {
   const [text, setText] = useState("_");
@@ -33,11 +35,10 @@ const About = () => {
         transition={{ duration: 1 }}
         className="w-72 h-72 rounded-full overflow-hidden border-4 border-red-500 shadow-lg mb-8 lg:mb-0"
       >
-        <img
-          src="/src/assets/WhatsApp Image 2025-04-03 at 10.13.32_b2966cc2.jpg"
-          alt="Devansh Profile"
-          className="w-full h-full object-cover"
-        />
+       <img
+       src={devanshPic}
+       alt="Devansh Profile"
+       className="w-full h-full object-cover"/>
       </motion.div>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
